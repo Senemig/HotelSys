@@ -1,0 +1,48 @@
+@model Quarto
+@{
+    ViewData["Title"] = "Check In";
+    string[] str = Model.Descricao.Split(',');
+    ClienteRepo cr = new ClienteRepo();
+}
+
+<h2>Fazendo Check In</h2>
+
+<div class="text-center">
+    <h3 class="subTitulo">
+        Quarto @Model.Numero
+    </h3>
+    <h5>Descrição</h5>
+    <ul class="quartoDescricao">
+        @foreach (string item in str)
+        {
+            <li>@item.Trim()</li>
+        }
+    </ul>
+
+    <form asp-action="CheckIn" method="post">
+        <input type="hidden" asp-for="idQuarto">
+        <input type="hidden" asp-for="Numero">
+        <input type="hidden" asp-for="Status" value="Ocupado">
+        <p>
+            <label asp-for="cliente.idCliente">Cliente</label>
+            <select asp-for="cliente.idCliente">
+                @foreach (var item in cr.Listar())
+                {
+                    <option value="@item.idCliente">@item.Nome</option>
+                }
+            </select>
+        </p>
+
+        <p>
+            <label asp-for="CheckIn">Check In</label>
+            <input asp-for="CheckIn" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" readonly>
+        </p>
+
+        <p>
+            <label asp-for="CheckOut">Check Out</label>
+            <input asp-for="CheckOut" type="date">
+        </p>
+
+        <input class="btn btn-primary" type="submit" value="Check In">
+    </form>
+</div>

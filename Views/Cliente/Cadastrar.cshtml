@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Cadastro de Cliente";
+}
+@model Cliente
+
+<h3>Cadastrando novo Cliente</h3>
+<form asp-action="Cadastrar" method="post">
+    <p>
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" maxlength="50">
+    </p>
+
+    <p>
+        <label asp-for="CPF">CPF</label>
+        <input asp-for="CPF" maxlength="13">
+    </p>
+
+    <input type="submit" value="Cadastrar">
+</form>

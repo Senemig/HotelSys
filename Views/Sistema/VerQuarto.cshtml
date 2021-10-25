@@ -1,0 +1,43 @@
+@model Quarto
+@{
+    ViewData["Title"] = "Descrição Quarto #" + Model.Numero;
+    string[] str = Model.Descricao.Split(',');
+    DateTime dtCheckIn;
+    DateTime dtCheckOut;
+}
+
+<div class="text-center">
+    <h3 class="subTitulo">
+        Quarto @Model.Numero
+    </h3>
+    <h5>Descrição</h5>
+    <ul class="quartoDescricao">
+        @foreach (string item in str)
+        {
+            <li>@item.Trim()</li>
+        }
+    </ul>
+    @if (Model.Status.ToUpper() != "VAZIO")
+    {
+        <p class="stsOcupado">OCUPADO</p>
+        <p><strong>Cliente: </strong>@Model.cliente.Nome</p>
+        <p><strong>Check In: </strong>
+            @{
+                dtCheckIn = (DateTime)Model.CheckIn;
+                @dtCheckIn.ToShortDateString()
+            }
+        </p>
+        <p><strong>Check Out: </strong>
+            @{
+                dtCheckOut = (DateTime)Model.CheckOut;
+                @dtCheckOut.ToShortDateString()
+            }</p>
+        <a class="btn btn-danger" href="/Sistema/CheckOut/@Model.idQuarto">Check Out</a>
+    }
+    else
+    {
+        <p class="stsVazio">VAGO</p>
+        <a class="btn btn-primary" href="/Sistema/CheckIn/@Model.idQuarto">Check In</a>
+        <a class="btn btn-warning" href="/Sistema/ReservarQuarto/@Model.idQuarto">Reservar</a>
+    }
+</div>

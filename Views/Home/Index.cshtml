@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using Microsoft.AspNetCore.Http
+
+<div class="text-center">
+    @if (Context.Session.GetInt32("idUsuario") != null)
+    {
+        <h1 class="display-4">Bem vindo @Context.Session.GetString("nomeUsuario")</h1>
+    }
+    else
+    {
+        <a class="btn btn-primary" href="/Home/Login">Fazer Login</a>
+    }
+</div>
