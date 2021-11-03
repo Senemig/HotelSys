@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HotelSys</title>
+    <script src="https://kit.fontawesome.com/69ab88855e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -24,7 +25,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         @* <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li> *@
+                            </li> *@
 
                         @if (Context.Session.GetInt32("idUsuario") != null)
                         {
@@ -33,12 +34,15 @@
                                 asp-action="Quartos">Quartos</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Sistema"
+                                asp-action="Historico">Histórico</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Cliente"
                                 asp-action="ListarClientes">Clientes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-danger" asp-area="" asp-controller="Home"
-                                asp-action="Logout">Logout</a>
+                                <a class="btn btn-danger" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
                             </li>
                         }
                         else

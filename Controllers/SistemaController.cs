@@ -12,6 +12,20 @@ namespace HotelSys.Controllers
 {
     public class SistemaController : Controller
     {
+        public IActionResult Historico()
+        {
+            if(HttpContext.Session.GetInt32("idUsuario") != null)
+            {
+                HistoricoRepo hr = new HistoricoRepo();
+                List<Historico> lista = hr.Listar();
+
+                return View(lista);
+            }
+            else
+                return RedirectToAction("Login", "Home");
+            
+        }
+
         public IActionResult Quartos()
         {
             if (HttpContext.Session.GetInt32("idUsuario") != null)
@@ -65,10 +79,20 @@ namespace HotelSys.Controllers
             if (HttpContext.Session.GetInt32("idUsuario") != null)
             {
                 QuartoRepo qr = new QuartoRepo();
-                qr.Editar(quarto);
-                quarto = qr.BuscarPorId(quarto.idQuarto);
+                HistoricoRepo hr = new HistoricoRepo();
 
-                return View("VerQuarto", quarto);
+                quarto.CheckIn = DateTime.Today;
+
+                qr.Editar(quarto);
+
+                Historico historico = new Historico();
+                historico.Quarto = quarto.Numero;
+                historico.idCliente = quarto.cliente.idCliente;
+                historico.Tipo = "CHECKIN";
+                historico.Registro = DateTime.Now;
+                hr.Insert(historico);
+
+                return RedirectToAction("Quartos");
             }
             else
             {
@@ -82,18 +106,26 @@ namespace HotelSys.Controllers
             if (HttpContext.Session.GetInt32("idUsuario") != null)
             {
                 QuartoRepo qr = new QuartoRepo();
-                Quarto quarto = new Quarto();
-                quarto.idQuarto = id;
+                HistoricoRepo hr = new HistoricoRepo();
+
+                Quarto quarto = qr.BuscarPorId(id);
+
+                Historico historico = new Historico();
+                historico.Quarto = quarto.Numero;
+                historico.idCliente = quarto.cliente.idCliente;
+                historico.Tipo = "CHECKOUT";
+                historico.Registro = DateTime.Now;
+                hr.Insert(historico);
+
                 quarto.CheckIn = null;
                 quarto.CheckOut = null;
                 quarto.cliente = new Cliente();
                 quarto.cliente.idCliente = 0;
-                quarto.Status = "Vazio";
+                quarto.Status = "VAZIO";
 
                 qr.Editar(quarto);
-                quarto = qr.BuscarPorId(quarto.idQuarto);
 
-                return View("VerQuarto", quarto);
+                return RedirectToAction("Quartos");
             }
             else
             {

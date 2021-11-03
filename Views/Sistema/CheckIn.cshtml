@@ -15,7 +15,22 @@
     <ul class="quartoDescricao">
         @foreach (string item in str)
         {
-            <li>@item.Trim()</li>
+            if (item.ToUpper().Contains("CAMA"))
+            {
+                <li><i class="fas fa-bed" style="margin-right: 10px;"></i>@item.Trim()</li>
+            }
+            else if (item.ToUpper().Contains("TV"))
+            {
+                <li><i class="fas fa-tv" style="margin-right: 10px;"></i>@item.Trim()</li>
+            }
+            else if (item.ToUpper().Contains("CONDICIONADO"))
+            {
+                <li><i class="fas fa-snowflake" style="margin-right: 10px;"></i>@item.Trim()</li>
+            }
+            else
+            {
+                <li><i class="fas fa-star" style="margin-right: 10px;"></i>@item.Trim()</li>
+            }
         }
     </ul>
 
@@ -28,21 +43,23 @@
             <select asp-for="cliente.idCliente">
                 @foreach (var item in cr.Listar())
                 {
-                    <option value="@item.idCliente">@item.Nome</option>
+                    <option value="@item.idCliente">@item.Nome - @item.CPF</option>
                 }
             </select>
         </p>
 
         <p>
             <label asp-for="CheckIn">Check In</label>
-            <input asp-for="CheckIn" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" readonly>
+            <input asp-for="CheckIn" type="date" id="from" value="@DateTime.Today.ToString("yyyy-MM-dd")" readonly
+                disabled>
         </p>
 
         <p>
             <label asp-for="CheckOut">Check Out</label>
-            <input asp-for="CheckOut" type="date">
+            <input asp-for="CheckOut" type="date" id="to" onchange="CompareDates()">
         </p>
 
-        <input class="btn btn-primary" type="submit" value="Check In">
+        <input class="btn btn-secondary" type="submit" value="Check In" id="subBtn" disabled>
+        <p id="alerta" style="color: red; display: none">Data de Check Out deve ser posterior à data de Check In!</p>
     </form>
 </div>

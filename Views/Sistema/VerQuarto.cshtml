@@ -14,7 +14,22 @@
     <ul class="quartoDescricao">
         @foreach (string item in str)
         {
-            <li>@item.Trim()</li>
+            if (item.ToUpper().Contains("CAMA"))
+            {
+                <li><i class="fas fa-bed" style="margin-right: 10px;"></i>@item.Trim()</li>
+            }
+            else if (item.ToUpper().Contains("TV"))
+            {
+                <li><i class="fas fa-tv" style="margin-right: 10px;"></i>@item.Trim()</li>
+            }
+            else if (item.ToUpper().Contains("CONDICIONADO"))
+            {
+                <li><i class="fas fa-snowflake" style="margin-right: 10px;"></i>@item.Trim()</li>
+            }
+            else
+            {
+                <li><i class="fas fa-star" style="margin-right: 10px;"></i>@item.Trim()</li>
+            }
         }
     </ul>
     @if (Model.Status.ToUpper() != "VAZIO")
@@ -23,13 +38,13 @@
         <p><strong>Cliente: </strong>@Model.cliente.Nome</p>
         <p><strong>Check In: </strong>
             @{
-                dtCheckIn = (DateTime)Model.CheckIn;
+                dtCheckIn = Convert.ToDateTime(Model.CheckIn);
                 @dtCheckIn.ToShortDateString()
             }
         </p>
         <p><strong>Check Out: </strong>
             @{
-                dtCheckOut = (DateTime)Model.CheckOut;
+                dtCheckOut = Convert.ToDateTime(Model.CheckOut);
                 @dtCheckOut.ToShortDateString()
             }</p>
         <a class="btn btn-danger" href="/Sistema/CheckOut/@Model.idQuarto">Check Out</a>

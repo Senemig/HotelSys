@@ -84,13 +84,13 @@ table * {
 }
 
 .quartoDescricao {
-  list-style: disc;
+  list-style: none;
   width: 200px;
   margin: 20px auto;
 }
 
 .quartoDescricao li {
-  text-align: left;
+  text-align: justify;
 }
 
 .stsVazio {
@@ -105,4 +105,8 @@ table * {
 
 #opcoes ul {
   list-style: none;
+}
+
+input[type="date"] {
+  text-align: center;
 }

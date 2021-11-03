@@ -34,3 +34,36 @@ function Escolher(li){
     document.getElementById("searchBox").value = li.innerText.split('|')[1].trim();
     myFunction(0);
 }
+
+function CompareDates() {
+        console.log('Function start')
+        var from = document.getElementById('from').value;
+        var to = document.getElementById('to').value;
+
+        console.log(from);
+        console.log(to);
+
+        var splitFrom = from.split('-');
+        var splitTo = to.split('-');
+
+        var fromDate = new Date(splitFrom[0] + ' ' + splitFrom[1] + ' ' + splitFrom[2]);
+        var toDate = new Date(splitTo[0] + ' ' + splitTo[1] + ' ' + splitTo[2]);
+
+        console.log(fromDate);
+        console.log(toDate);
+
+        if (toDate > fromDate) {
+            document.getElementById('subBtn').removeAttribute('disabled');
+            document.getElementById('subBtn').classList.remove('btn-secondary');
+            document.getElementById('subBtn').classList.add('btn-primary');
+            document.getElementById('alerta').style.display = 'none';
+            console.log('toDate > fromDate');
+        }
+        else {
+            document.getElementById('subBtn').setAttribute('disabled', 'disabled');
+            document.getElementById('subBtn').classList.remove('btn-primary');
+            document.getElementById('subBtn').classList.add('btn-secondary');
+            document.getElementById('alerta').style.display = 'block';
+            console.log('toDate < fromDate');
+        }
+    }

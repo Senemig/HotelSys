@@ -40,3 +40,4 @@ C:\Users\ferna\Desktop\workspace\C#\HotelSys\obj\Debug\netcoreapp3.1\Razor\Views
 C:\Users\ferna\Desktop\workspace\C#\HotelSys\obj\Debug\netcoreapp3.1\Razor\Views\Sistema\CheckIn.cshtml.g.cs
 C:\Users\ferna\Desktop\workspace\C#\HotelSys\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Cadastrar.cshtml.g.cs
 C:\Users\ferna\Desktop\workspace\C#\HotelSys\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\ListarClientes.cshtml.g.cs
+C:\Users\ferna\Desktop\workspace\C#\HotelSys\obj\Debug\netcoreapp3.1\Razor\Views\Sistema\Historico.cshtml.g.cs

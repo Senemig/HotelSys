@@ -14412,6 +14412,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\ferna\\Desktop\\workspace\\C#\\HotelSys\\Views\\Sistema\\Historico.cshtml",
+      "TargetPath": "Views\\Sistema\\Historico.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\ferna\\Desktop\\workspace\\C#\\HotelSys\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"

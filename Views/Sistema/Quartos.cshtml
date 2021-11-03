@@ -24,7 +24,7 @@
             <tbody>
                 @foreach (Quarto quarto in Model)
                 {
-                    if (quarto.Status == "Vazio")
+                    if (quarto.Status.ToLower() == "vazio")
                     {
                         <tr class="table-success" onclick="location.href='/Sistema/VerQuarto/@quarto.idQuarto'">
                             <td scope="row">@quarto.Numero</td>
@@ -64,14 +64,16 @@
                                 @if (quarto.CheckIn != null)
                                 {
                                     dtCheckIn = (DateTime)quarto.CheckIn;
-                                    @dtCheckIn.ToShortDateString();
+                                    @dtCheckIn.ToShortDateString()
+                                    ;
                                 }
                             </td>
                             <td>
                                 @if (quarto.CheckOut != null)
                                 {
                                     dtCheckOut = (DateTime)quarto.CheckOut;
-                                    @dtCheckOut.ToShortDateString();
+                                    @dtCheckOut.ToShortDateString()
+                                    ;
                                 }
                             </td>
                         </tr>

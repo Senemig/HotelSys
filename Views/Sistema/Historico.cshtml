@@ -1,0 +1,46 @@
+@{
+    ViewData["Tittle"] = "Histórico";
+    ClienteRepo cr = new ClienteRepo();
+}
+@model List<Historico>
+
+
+@if (Model.Count > 0)
+{
+    <div class="text-center">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Quarto</th>
+                    <th>Cliente</th>
+                    <th>Tipo</th>
+                    <th>Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Historico historico in Model)
+                {
+                    @if (historico.Tipo.ToLower() == "checkin")
+                    {
+                        <tr class="table-success">
+                            <td>@historico.Quarto</td>
+                            <td>@cr.BuscarPorId(historico.idCliente).Nome</td>
+                            <td>Check In</td>
+                            <td>@historico.Registro</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="table-warning">
+                            <td>@historico.Quarto</td>
+                            <td>@cr.BuscarPorId(historico.idCliente).Nome</td>
+                            <td>Check Out</td>
+                            <td>@historico.Registro</td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+        </table>
+    </div>
+}
