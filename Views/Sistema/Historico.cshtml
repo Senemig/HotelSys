@@ -1,12 +1,39 @@
 @{
     ViewData["Tittle"] = "Histórico";
     ClienteRepo cr = new ClienteRepo();
+    QuartoRepo qr = new QuartoRepo();
 }
 @model List<Historico>
 
 
 @if (Model.Count > 0)
 {
+    <div class="btn_select">
+        <p>
+            <label for="Clientes">Cliente</label>
+            <select name="Clientes" id="selClientes" onchange="filtro_tabela()">
+                <option value="todos">Todos</option>
+                @foreach (Cliente cliente in cr.Listar())
+                {
+                    <option value="@cliente.Nome.ToLower()">@cliente.Nome</option>
+                }
+            </select>
+        </p>
+
+        <p>
+            <label for="Quartos">Quarto</label>
+            <select name="Quartos" id="selQuartos" onchange="filtro_tabela()">
+                <option value="todos">Todos</option>
+                @foreach (Quarto quarto in qr.Listar())
+                {
+                    <option value="@quarto.Numero">@quarto.Numero</option>
+                }
+            </select>
+        </p>
+
+    </div>
+
+
     <div class="text-center">
         <table class="table">
             <thead class="thead-dark">
@@ -17,7 +44,7 @@
                     <th>Registro</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="Historico">
                 @foreach (Historico historico in Model)
                 {
                     @if (historico.Tipo.ToLower() == "checkin")

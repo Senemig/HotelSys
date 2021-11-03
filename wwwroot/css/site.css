@@ -110,3 +110,9 @@ table * {
 input[type="date"] {
   text-align: center;
 }
+
+.btn_select {
+  margin: 20px;
+  display: flex;
+  justify-content: space-around;
+}

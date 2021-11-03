@@ -67,3 +67,48 @@ function CompareDates() {
             console.log('toDate < fromDate');
         }
     }
+
+    function filtro_tabela(){
+        console.log("Entrou na função");
+        var tabela, selClientes, selQuartos;
+
+        tabela = document.getElementById("Historico");
+        rows = tabela.rows;
+        console.log(rows.length);
+        selClientes = document.getElementById("selClientes").value.toLowerCase();
+        console.log(selClientes);
+        selQuartos = document.getElementById("selQuartos").value.toLowerCase();
+        console.log(selQuartos);
+
+        for(i = 0; i < rows.length; i++){
+            if(selClientes == 'todos' && selQuartos != 'todos'){
+                if(rows[i].cells[0].innerText != selQuartos){
+                    rows[i].style.display = 'none';
+                }
+                else{
+                    rows[i].style.display = 'table-row';
+                }
+            }
+            else if(selQuartos == 'todos' && selClientes != 'todos'){
+                if(rows[i].cells[1].innerText.toLowerCase() != selClientes){
+                    rows[i].style.display = 'none';
+                }
+                else{
+                    rows[i].style.display = 'table-row';
+                }
+            }
+            else if(selQuartos != 'todos' && selClientes != 'todos'){
+                if(rows[i].cells[0].innerText != selQuartos || rows[i].cells[1].innerText.toLowerCase() != selClientes){
+                    console.log("Quarto é " + rows[i].cells[0].innerText + "\nCliente é " + rows[i].cells[1].innerText.toLowerCase());
+                    rows[i].style.display = 'none';
+                }
+                else{
+                    rows[i].style.display = 'table-row';
+                }
+            }
+            else{
+                rows[i].style.display = 'table-row';
+            }
+        }
+    }
+
